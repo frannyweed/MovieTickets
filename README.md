@@ -40,7 +40,7 @@ Your app will have the following features
 
 ### BeautifulSoup portion:
 Your app will have the following features:
-- Web scraping functions in separate file from __main__
+- Web scraping functions in separate file from `__main__`
 - Scrapes available dates from Fandango website (next 7 days)
 - Scrapes available links (href) to those dates
 - Scrapes available movies for the date selected
@@ -49,7 +49,7 @@ Your app will have the following features:
 
 ### Recordkeeping portion:
 Your app will have the following features:
-- Records class in separate file from __main__
+- Records class in separate file from `__main__`
 - a ledger to permanently record each purchase (date,movie,time,tickets)
 - a record to permanently record total purchase for each day and showing
 - both record and ledger kept as csv files
