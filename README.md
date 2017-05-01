@@ -1,6 +1,7 @@
 # MovieTickets
 
-(150pts, 75pts for your section, 75pts for overall app)
+_(150pts, 75pts for your section, 75pts for overall app)_
+
 Your client's organization provides discount movie tickets as a benefit to 
 its employees and families.
 You are tasked with creating a desktop app to track discount movie tickets
@@ -19,14 +20,14 @@ and writing to and reading from files.
 You will be working as a team of 3 students collaboratively on github.
 You will create at least three python files for this app.
 Each student will be responsible for one file.
-One .py file will handle the tkinter GUI (this will be the __main__). 
-One .py file will handle all web scraping using BeautifulSoup. 
-One .py file will handle data storage to track and record all purchases.
+One `.py` file will handle the tkinter GUI (this will be the `__main__`). 
+One `.py` file will handle all web scraping using BeautifulSoup. 
+One `.py` file will handle data storage to track and record all purchases.
 
-Tkinter file:
+### Tkinter file:
 Your app will have the following features
 - App class 
-- __name__ == "__main__":
+- `__name__ == "__main__":`
 - imports Webscraping and Recordkeeping modules/libraries
 - an OptionMenu to choose the date of your visit
 - an OptionMenu to choose your movie
@@ -37,7 +38,7 @@ Your app will have the following features
 - After a purchase is made, you will be able to start over.
 - Proper formatting (font, colors, sticky, width, layout)
 
-BeautifulSoup portion:
+### BeautifulSoup portion:
 Your app will have the following features:
 - Web scraping functions in separate file from __main__
 - Scrapes available dates from Fandango website (next 7 days)
@@ -46,7 +47,7 @@ Your app will have the following features:
 - Scrapes available times for the movie and date
 - Creates lists out of all of the above items for use in the app
 
-Recordkeeping portion:
+### Recordkeeping portion:
 Your app will have the following features:
 - Records class in separate file from __main__
 - a ledger to permanently record each purchase (date,movie,time,tickets)
@@ -57,12 +58,9 @@ Your app will have the following features:
 - checks to ensure no more than 20 tickets per day
 - ledger and record are updated after each purpose
 
-IF your team has a 4th member:
+### IF your team has a 4th member:
+
 Your app will create a printable ticket following the purchase.
 This ticket will have date, show, time, and number of tickets.
 
 All team members will make appropriate pull requests and merges to github.
-'''
-OPEN
-
-Add class comment…
