@@ -38,7 +38,7 @@ class check_ticket():
         # checks to ensure no more than 10 tickets per showing
         # checks to ensure no more than 20 tickets per day
         # ledger and record are updated after each purpose
-        self.__write({"date": date, "movie": movie, "time": time, "number": number})
+        self.__write(self.ledger, {"date": date, "movie": movie, "time": time, "number": number})
 
     def __write(self, filename, data):
         """private method to append some data. data is a list of dict."""
