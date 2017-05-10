@@ -2,9 +2,6 @@ from bs4 import BeautifulSoup
 import urllib.request
 
 
-
-
-
 #print(soup)
 #based on the day, list movies, times, and prices
 
@@ -40,7 +37,7 @@ def get_times(url):
     page = urllib.request.urlopen(url)
     soup = BeautifulSoup(page.read(), "html.parser")
     soup.prettify()
-    times = [x.text.strip() for x in soup.findAll("time", {"class": "timeInfo"})]
+    times = [x.text.strip() for x in soup.findAll("time", {"class": "timeInfo"})] #for y in soup.findAll("a", {"class": "btn btn-showtimes btn-ticket"})]
     print(times)
 
 if __name__ == "__main__":
