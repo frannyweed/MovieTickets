@@ -27,6 +27,11 @@ body_tag = soup.new_tag('body')
 main_tag.append(body_tag)
 
 #myDIV
+new_tag = soup.new_tag("style")
+new_tag.string = "#mount{width: 304px; height: 228px; src: 'movie.png'; alt: 'Mountain View'}"
+main_tag.append(new_tag)
+mountain = soup.new_tag("img", id = "mount")
+body_tag.append(mountain)
 
 style_tag = soup.new_tag("style")
 style_tag.string = '#myDIV{line-height: 20%;font-family: arial-black; color:black;text-align:center;}'
@@ -64,6 +69,7 @@ main_tag.append(style_tag4)
 new4 = soup.new_tag("h4", id = "#time")
 new4.string = "1:00 pm Sat 10/13/16"
 body_tag.append(new4)
+
 
 file_name = "ticket.html"
 
