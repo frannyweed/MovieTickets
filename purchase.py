@@ -1,17 +1,19 @@
 """
 purchase.py
-Provides the Records class.
+Provides the check_ticket class.
 
 @author: JJ
 """
 
 
 class check_ticket():
-    """Records class in separate file from __main__"""
+    """ Records 'class' in separate file from __main__
+        It thinks it's a function.
+    """
     record = 'MovieTickets.rec'
     ledger = 'MovieTickets.leg'
 
-    MovieError = "Already bought 10 of those..."
+    MovieError = "Already bought 10 of "  # + movie
     DateError = "20 tickets in one day??"
 
     from csv import DictReader as __reader
@@ -25,6 +27,7 @@ class check_ticket():
             :param movie
             :param time
             :param number
+            :returns "Success" or an error message
         """
         movie_count = 0
         day_count = 0
@@ -32,13 +35,15 @@ class check_ticket():
             movie_count += 1 if purchase[movie] == movie else 0
             day_count += 1 if purchase[date] == date else 0
         if movie_count > 10:
-            return self.MovieError
+            return self.MovieError + movie
         if day_count > 20:
             return self.DateError
         # checks to ensure no more than 10 tickets per showing
         # checks to ensure no more than 20 tickets per day
         # ledger and record are updated after each purpose
         self.__write(self.ledger, {"date": date, "movie": movie, "time": time, "number": number})
+
+        return "Success"
 
     def __write(self, filename, data):
         """private method to append some data. data is a list of dict."""
