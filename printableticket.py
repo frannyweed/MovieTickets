@@ -29,31 +29,41 @@ main_tag.append(body_tag)
 #myDIV
 
 style_tag = soup.new_tag("style")
-style_tag.string = '#myDIV{color:black;text-align:center;}'
+style_tag.string = '#myDIV{line-height: 20%;font-family: arial-black; color:black;text-align:center;}'
 main_tag.append(style_tag)
-back = soup.new_tag("h1", id = "myDIV")
+back = soup.new_tag("h4", id = "myDIV")
 back.string = "Regal Webster Theater"
 body_tag.append(back)
 
 #PRESENTING
 style_tag2 = soup.new_tag('style')
-style_tag2.string = '#presenting{color:black; font-size: 15;line-height: 0%; text-align:center;font-style: italic;}'
+style_tag2.string = '#presenting{font-family: arial-black;color:black;line-height: 0%; text-align:center;font-style: italic;}'
 
 main_tag.append(style_tag2)
 
-new2 = soup.new_tag("h1", id="presenting")
+new2 = soup.new_tag("h5", id="presenting")
 new2.string = "Presenting"
 body_tag.append(new2)
 
-#WHAT MOVIE IS PLAYING
+#MOVIE
 
 style_tag3 = soup.new_tag("style")
-style_tag3.string = "#movie{ height:40px; font-size:50;color: red; text-align:center;animation: mymove 5s infinite} @keyframes mymove{50% {color: purple;}}"
+style_tag3.string = "#movie{line-height:0% height:40px;color: red; text-align:center;animation: mymove 5s infinite} @keyframes mymove{50% {color: purple;}}"
 main_tag.append(style_tag3)
 
 new3 = soup.new_tag('h1', id='movie')
 new3.string = "Beauty and The Beast"
 body_tag.append(new3)
+
+#TIME
+
+style_tag4 = soup.new_tag('style')
+style_tag4.string= "#time{column=2; font-family: Lucida Console;"
+main_tag.append(style_tag4)
+
+new4 = soup.new_tag("h4", id = "#time")
+new4.string = "1:00 pm Sat 10/13/16"
+body_tag.append(new4)
 
 file_name = "ticket.html"
 
