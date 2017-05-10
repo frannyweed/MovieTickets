@@ -4,9 +4,9 @@ THIS IS SIMON'S (MASTER) DOCUMENT. DO NOT MAKE EDITS UNLESS YOU'VE BEEN CELARED 
 
 from tkinter import *
 from tkinter.font import *
-'''
+
 from purchase import check_ticket
-'''
+
 class App():
     def __init__(self, master):
         #lists
@@ -18,7 +18,7 @@ class App():
         self.response.set("sample")
 
         self.movie_list = StringVar()
-        self.movie_list.set("memes\ and\ dreams")
+        self.movie_list.set("memes\ and\ dreams boop\ bee\ doop")
         self.movie_list.get()
 
         self.day_var = StringVar()
@@ -35,7 +35,7 @@ class App():
         self.result_label = Label(master, textvariable=self.response).grid(row=5, column=3, sticky="e" + "w")
 
         #listbox
-        self.movie_listbox = Listbox(master, listvariable=self.movie_list,heigh=5).grid(row=2,rowspan=2,column=2)
+        self.movie_listbox = Listbox(master, listvariable=self.movie_list,height=5).grid(row=2,rowspan=2,column=2)
 
         #optionmenus
         self.date_menu = OptionMenu(master, self.day_var, *self.day_list).grid(row=2, column=1, sticky="e" + "w")
@@ -45,11 +45,12 @@ class App():
         '''
         self.time_menu = OptionMenu(master, self.time_var, *self.time_list).grid(row=2, column=3, sticky="e" + "w")
 
-        #buttons
-        self.purchase_button = Button(master, text="Purchase", command=lambda:self.response.set(self.check_ticket(self.date_menu.get(),self.movie_listbox.get(),self.time_menu.get(),self.ticket_amount.get()))).grid(row=5,column=2,sticky="e" + "w")
-
         #spinboxes
         self.ticket_amount = Spinbox(master, from_=0, to=12, increment=1).grid(row=4,column=2,sticky="e" + "w")
+
+        #button
+        self.purchase_button = Button(master, text="Purchase", command=lambda:print(self.movie_listbox.get()[0])).grid(row=5,column=2,sticky="e" + "w")
+        #command=lambda:self.response.set(check_ticket(self.day_var.get(),"beep",self.time_var.get(),self.ticket_amount.get()))
 
 
 if __name__ == "__main__":
