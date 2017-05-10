@@ -47,7 +47,7 @@ class check_ticket():
 
     def __write(self, filename, data):
         """private method to append some data. data is a list of dict."""
-        with open(filename, 'w') as f:
+        with open(filename, 'w+') as f:
             writer = self.__writer(f, fieldnames=data[0].keys())
             writer.writeheader()
             writer.writerows(self.__read(filename).append(data))
