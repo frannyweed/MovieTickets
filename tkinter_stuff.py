@@ -35,22 +35,25 @@ class App():
         self.result_label = Label(master, textvariable=self.response).grid(row=5, column=3, sticky="e" + "w")
 
         #listbox
-        self.movie_listbox = Listbox(master, listvariable=self.movie_list,height=5).grid(row=2,rowspan=2,column=2)
+        self.movie_listbox = Listbox(master, listvariable=self.movie_list,height=5)
+        self.movie_listbox.grid(row=2,rowspan=2,column=2)
 
         #optionmenus
-        self.date_menu = OptionMenu(master, self.day_var, *self.day_list).grid(row=2, column=1, sticky="e" + "w")
+        self.date_menu = OptionMenu(master, self.day_var, *self.day_list)
+        self.date_menu.grid(row=2, column=1, sticky="e" + "w")
         '''
         self.day_menu = OptionMenu(master, self.day_var, *self.day_list).grid(row=2, column=1,sticky="e" + "w")
         self.month_menu = OptionMenu(master, self.month_var, *self.month_list).grid(row=3, column=1,sticky="e" + "w")
         '''
-        self.time_menu = OptionMenu(master, self.time_var, *self.time_list).grid(row=2, column=3, sticky="e" + "w")
+        self.time_menu = OptionMenu(master, self.time_var, *self.time_list)
+        self.time_menu.grid(row=2, column=3, sticky="e" + "w")
 
         #spinboxes
-        self.ticket_amount = Spinbox(master, from_=0, to=12, increment=1).grid(row=4,column=2,sticky="e" + "w")
+        self.ticket_amount = Spinbox(values=(1,2,3,4,5,6,7,8,9,10,11,12))
+        self.ticket_amount.grid(row=4,column=2,sticky="e" + "w")
 
         #button
-        self.purchase_button = Button(master, text="Purchase", command=lambda:print(self.movie_listbox.get()[0])).grid(row=5,column=2,sticky="e" + "w")
-        #command=lambda:self.response.set(check_ticket(self.day_var.get(),"beep",self.time_var.get(),self.ticket_amount.get()))
+        self.purchase_button = Button(master, text="Purchase", command=lambda:self.response.set(check_ticket()(self.day_var.get(),self.movie_listbox.get(0),self.time_var.get(),self.ticket_amount.get()))).grid(row=5,column=2,sticky="e" + "w")
 
 
 if __name__ == "__main__":
