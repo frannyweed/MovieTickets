@@ -1,9 +1,10 @@
+'''
+Author: Nina Sachs 
+'''
+
 from bs4 import BeautifulSoup
 import urllib.request
 
-
-#print(soup)
-#based on the day, list movies, times, and prices
 
 def soupy(url):
     page = urllib.request.urlopen(url)
@@ -28,23 +29,24 @@ def get_dates():
     urls = [x.get('href') for x in soup.findAll("a", {"class": "date-area"})]
     urls = urls[:7]
 
-    print(dates)
-    print(urls)
+    return dates, urls
+
 
 def get_movies(url):
     page = urllib.request.urlopen(url)
     soup = BeautifulSoup(page.read(), "html.parser")
     soup.prettify()
     movie_titles_list = [x.text.strip() for x in soup.findAll("a", {"class": "dark showtimes-movie-title"})]
-    print(movie_titles_list)
+
+    return movie_titles_list
 
 def get_times(url):
     page = urllib.request.urlopen(url)
     soup = BeautifulSoup(page.read(), "html.parser")
     soup.prettify()
-    #times = [[y.findAll("time", {"class": "timeInfo"}] for y in
     times = [[z.text for z in y.findAll('time', {'class':'timeInfo'})] for y in [x for x in soup.findAll("div", {"class": "showtimes-times"})]]
-    print(times)
+
+    return times
 
 if __name__ == "__main__":
     get_dates()
