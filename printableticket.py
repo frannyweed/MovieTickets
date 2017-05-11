@@ -29,8 +29,13 @@ main_tag.append(body_tag)
 new_tag = soup.new_tag("style")
 new_tag.string = "#mount{width: 304px; height: 228px; img src: movie.png; img alt: Mountain View}"
 main_tag.append(new_tag)
+'''
 mountain = soup.new_tag("img", id = "mount")
 body_tag.append(mountain)
+'''
+
+mountain = soup.new_tag("h2", id = "mount")
+
 
 style_tag = soup.new_tag("style")
 style_tag.string = '#myDIV{line-height: 20%;font-family: arial-black; color:black;text-align:center;}'
