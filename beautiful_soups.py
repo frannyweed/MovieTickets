@@ -12,7 +12,7 @@ def soupy(url):
     soup.prettify()
     return soup
 
-def get_dates(url):
+def get_dates():
     url = "http://www.fandango.com/regalwebsterplace11_aaaxr/theaterpage"
     soup = soupy(url)
 
@@ -46,7 +46,7 @@ def get_times(url):
     return times
 
 if __name__ == "__main__":
-    get_dates("http://www.fandango.com/regalwebsterplace11_aaaxr/theaterpage")
+    get_dates()
     get_movies("http://www.fandango.com/regalwebsterplace11_aaaxr/theaterpage?date=5/10/2017")
     get_times("http://www.fandango.com/regalwebsterplace11_aaaxr/theaterpage?date=5/10/2017")
 
