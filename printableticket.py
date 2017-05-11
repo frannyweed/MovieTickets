@@ -1,23 +1,7 @@
-'''
-from tkinter import *
-class Ticket():
-    def __init__(self,master):
-        self.title_font = font.Font(family = "Courier New")
-        self.title = Label(master, text = "Your ticket", fg = "dark blue")
-        self.title.grid(column=0,row=0)
-
-
-if __name__ == "__main__":
-    root = Tk()
-    root.title("Your Ticket")
-    my_app = Ticket(root)
-    root.mainloop()
-'''
 from bs4 import BeautifulSoup
 import webbrowser
 import os
 from urllib.request import pathname2url
-
 soup = BeautifulSoup("<html>", 'lxml') # make soup object with html tag only
 
 main_tag = soup.html # grab the html tag so we can add to it
@@ -56,12 +40,21 @@ body_tag.append(new3)
 #TIME
 
 style_tag4 = soup.new_tag('style')
-style_tag4.string= "#time{column=2; font-family: Lucida Console;}"
+style_tag4.string= "#time{font-family: Lucida Console;font-size:10;}"
 main_tag.append(style_tag4)
 
-new4 = soup.new_tag("h4", id = "#time")
+new4 = soup.new_tag("h1", id = "#time")
 new4.string = "1:00 pm Sat 10/13/16"
 body_tag.append(new4)
+
+#TICKETS + TICKET PRICE
+style_tag5 = soup.new_tag("style")
+style_tag5.string = "#ticket{font-family: Lucida Console;font-size:200;line-height: 0%;}"
+main_tag.append(style_tag5)
+
+new5 = soup.new_tag("h6", id = "#ticket")
+new5.string = "5 tickets"
+body_tag.append(new5)
 
 #REGAL WEBSTER THEATERS
 
@@ -71,8 +64,6 @@ new_tag.center = "{text-align: center;}"
 main_tag.append(new_tag)
 regal = soup.new_tag("img", id = "mov", src = "movie.png", align = "right")
 body_tag.append(regal)
-
-
 
 file_name = "ticket.html"
 
