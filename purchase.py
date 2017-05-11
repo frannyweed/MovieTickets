@@ -19,7 +19,10 @@ class check_ticket():
     from csv import DictReader as __reader
     from csv import DictWriter as __writer
     def __init__(self):
-        pass
+        with open(self.record, 'w+'):
+            pass
+        with open(self.ledger, 'w+'):
+            pass
 
     def __call__(self, date, movie, time, number):
         """ function(s) and/or method(s) to "claim" tickets
@@ -41,18 +44,24 @@ class check_ticket():
         # checks to ensure no more than 10 tickets per showing
         # checks to ensure no more than 20 tickets per day
         # ledger and record are updated after each purpose
-        self.__write(self.ledger, {"date": date, "movie": movie, "time": time, "number": number})
+        self.__write(self.ledger, [{"date": date, "movie": movie, "time": time} for i in range(number)])
 
         return "Success"
 
     def __write(self, filename, data):
         """private method to append some data. data is a list of dict."""
         with open(filename, 'w') as f:
-            writer = self.__writer(f, fieldnames=data[0].keys())
+            writer = self.__writer(f, fieldnames=list(data[0].keys()))
             writer.writeheader()
-            writer.writerows(self.__read(filename).append(data))
+            for i in data:
+                print(i)
+                writer.writerow(i)
 
     def __read(self, filename):
         """private method to read some data"""
         with open(filename) as f:
-            return [dict(row) for row in self.__reader(f)]
+            return list(self.__reader(f))
+
+
+if __name__ == '__main__':
+    check_ticket()("may 5", "moviemane", "3:00", 3)
