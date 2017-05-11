@@ -16,9 +16,6 @@ class App():
         self.day_list, self.date_url = get_dates()
         self.time_list = ["3:00pm", "5:00pm", "7:00pm", "9:00pm", "11:00pm"]
 
-        self.movie_list = StringVar()
-        self.movie_list.set("memes\ and\ dreams boop\ bee\ doop")
-        self.movie_list.get()
 
         #variables
         self.response = StringVar()
@@ -28,9 +25,13 @@ class App():
         self.day_var = StringVar()
         self.month_var = StringVar()
         self.time_var = StringVar()
-        self.day_var.set("Select a date")
+        self.day_var.set(self.day_list[0])
         self.month_var.set("Select a month")
         self.time_var.set("Select a time")
+
+        self.movie_list = StringVar()
+        self.movie_list.set(get_movies(self.date_url[self.day_list.index(self.day_var.get())]))
+        self.movie_list.get()
 
         #labels
         self.title = Label(master, text="Movie Ticket App").grid(row=1,column=1,columnspan=3,sticky="e" + "w")
