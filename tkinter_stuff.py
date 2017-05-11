@@ -6,20 +6,24 @@ from tkinter import *
 from tkinter.font import *
 
 from purchase import check_ticket
+from beautiful_soups import get_dates
+from beautiful_soups import get_movies
+from beautiful_soups import get_times
 
 class App():
     def __init__(self, master):
         #lists
-        self.day_list = ["Monday, May 8", "Tuesday, May 9"]
+        self.day_list, self.date_url = get_dates()
         self.time_list = ["3:00pm", "5:00pm", "7:00pm", "9:00pm", "11:00pm"]
+
+        self.movie_list = StringVar()
+        self.movie_list.set("memes\ and\ dreams boop\ bee\ doop")
+        self.movie_list.get()
 
         #variables
         self.response = StringVar()
         self.response.set("sample")
 
-        self.movie_list = StringVar()
-        self.movie_list.set("memes\ and\ dreams boop\ bee\ doop")
-        self.movie_list.get()
 
         self.day_var = StringVar()
         self.month_var = StringVar()
@@ -55,6 +59,8 @@ class App():
         #button
         self.purchase_button = Button(master, text="Purchase", command=lambda:self.response.set(check_ticket()(self.day_var.get(),self.movie_listbox.get(0),self.time_var.get(),self.ticket_amount.get()))).grid(row=5,column=2,sticky="e" + "w")
 
+        def find_url():
+            self.url = self.date_url[self.day_list.index(self.day_var.get())]
 
 if __name__ == "__main__":
     root = Tk()
