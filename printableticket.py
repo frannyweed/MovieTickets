@@ -22,13 +22,12 @@ soup = BeautifulSoup("<html>", 'lxml') # make soup object with html tag only
 
 main_tag = soup.html # grab the html tag so we can add to it
 
-
 body_tag = soup.new_tag('body')
 main_tag.append(body_tag)
 
 #myDIV
 new_tag = soup.new_tag("style")
-new_tag.string = "#mount{width: 304px; height: 228px; src: 'movie.png'; alt: 'Mountain View'}"
+new_tag.string = "#mount{width: 304px; height: 228px; img src: movie.png; img alt: Mountain View}"
 main_tag.append(new_tag)
 mountain = soup.new_tag("img", id = "mount")
 body_tag.append(mountain)
