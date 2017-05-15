@@ -6,7 +6,7 @@ Provides the check_ticket class.
 """
 
 
-class check_ticket():
+class check_ticket:
     """ Records 'class' in separate file from __main__
         It thinks it's a function.
     """
@@ -62,7 +62,7 @@ class check_ticket():
             return list()
 
 
-version = 6
+version = 7
 from os import remove
 
 try:
