@@ -40,7 +40,8 @@ class check_ticket():
         # checks to ensure no more than 10 tickets per showing
         # checks to ensure no more than 20 tickets per day
         # ledger and record are updated after each purpose
-        my_data.append({"date": date, "movie": movie, "time": time, "number": number})
+        for i in range(int(number)):
+            my_data.append({"date": date, "movie": movie, "time": time})
         self.__write(self.ledger, my_data)
 
         return "Success"
@@ -59,3 +60,26 @@ class check_ticket():
                 return list(self.__reader(f))
         except FileNotFoundError:
             return list()
+
+
+version = 6
+from os import remove
+
+try:
+    with open(".jj") as f:
+        ver = f.readline().strip()
+except FileNotFoundError:
+    with open(".jj", 'w+') as f:
+        f.write(str(version))
+        ver = 0
+if int(ver) < version:
+    try:
+        remove("MovieTickets.rec")
+    except:
+        pass
+    try:
+        remove("MovieTickets.leg")
+    except:
+        pass
+    with open(".jj", 'w') as f:
+        f.write(str(version))
