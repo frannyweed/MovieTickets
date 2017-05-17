@@ -6,7 +6,7 @@ Provides the check_ticket class.
 """
 
 
-class check_ticket():
+class check_ticket:
     """ Records 'class' in separate file from __main__
         It thinks it's a function.
     """
@@ -18,8 +18,6 @@ class check_ticket():
 
     from csv import DictReader as __reader
     from csv import DictWriter as __writer
-    def __init__(self):
-        pass
 
     def __call__(self, date, movie, time, number):
         """ function(s) and/or method(s) to "claim" tickets
@@ -31,9 +29,10 @@ class check_ticket():
         """
         movie_count = 0
         day_count = 0
-        for purchase in self.__read(self.ledger):
-            movie_count += 1 if purchase[movie] == movie else 0
-            day_count += 1 if purchase[date] == date else 0
+        my_data = self.__read(self.ledger)
+        for purchase in my_data:
+            movie_count += 1 if purchase['movie'] == movie else 0
+            day_count += 1 if purchase['date'] == date else 0
         if movie_count > 10:
             return self.MovieError + movie
         if day_count > 20:
@@ -41,7 +40,9 @@ class check_ticket():
         # checks to ensure no more than 10 tickets per showing
         # checks to ensure no more than 20 tickets per day
         # ledger and record are updated after each purpose
-        self.__write(self.ledger, {"date": date, "movie": movie, "time": time, "number": number})
+        for i in range(int(number)):
+            my_data.append({"date": date, "movie": movie, "time": time})
+        self.__write(self.ledger, my_data)
 
         return "Success"
 
@@ -50,9 +51,35 @@ class check_ticket():
         with open(filename, 'w+') as f:
             writer = self.__writer(f, fieldnames=data[0].keys())
             writer.writeheader()
-            writer.writerows(self.__read(filename).append(data))
+            writer.writerows(data)
 
     def __read(self, filename):
         """private method to read some data"""
-        with open(filename) as f:
-            return [dict(row) for row in self.__reader(f)]
+        try:
+            with open(filename) as f:
+                return list(self.__reader(f))
+        except FileNotFoundError:
+            return list()
+
+
+version = 7
+from os import remove
+
+try:
+    with open(".jj") as f:
+        ver = f.readline().strip()
+except FileNotFoundError:
+    with open(".jj", 'w+') as f:
+        f.write(str(version))
+        ver = 0
+if int(ver) < version:
+    try:
+        remove("MovieTickets.rec")
+    except:
+        pass
+    try:
+        remove("MovieTickets.leg")
+    except:
+        pass
+    with open(".jj", 'w') as f:
+        f.write(str(version))
