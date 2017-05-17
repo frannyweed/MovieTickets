@@ -35,10 +35,7 @@ def get_movies(url):
     movie_titles_list = [x.text.strip() for x in soup.findAll("a", {"class": "dark showtimes-movie-title"})]
     movie_titles_list = [x.replace('  ', '\ ') for x in movie_titles_list]
 
-    urls2 = [x.get('href') for x in soup.findAll("a", {"class": "dark showtimes-movie-title"})]
-
-    print(urls2)
-    return movie_titles_list, urls2
+    return movie_titles_list
 
 
 def get_times(url):
