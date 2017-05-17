@@ -33,6 +33,7 @@ class App():
 
         #self.movie_var.set(self.movie_list[0])
         self.movie_var.set("Select a movie")
+        self.movie_var.set(self.movie_list[0])
 
         #labels
         self.title = Label(master, text="Movie Ticket App").grid(row=1,column=1,columnspan=3,sticky="e" + "w")
@@ -51,11 +52,12 @@ class App():
         self.date_menu.grid(row=2, column=1, sticky="e" + "w")
 
         self.time_list = ["Please Select a Movie First"]
+        self.time_list = get_times(self.date_url[self.day_list.index(self.day_var.get())])
 
         self.movie_menu = OptionMenu(master, self.movie_var, *self.movie_list, command=self.get_time_list)
         self.movie_menu.grid(row=2,column=2,sticky="e" + "w")
 
-        self.time_menu = OptionMenu(master, self.time_var, *self.time_list)
+        self.time_menu = OptionMenu(master, self.time_var, *self.time_list[0])
         self.time_menu.grid(row=2, column=3, sticky="e" + "w")
 
         #spinboxes
@@ -65,12 +67,8 @@ class App():
         #button
         self.purchase_button = Button(master, text="Purchase", command=lambda:self.response.set(check_ticket()(self.day_var.get(),self.movie_var.get(),self.time_var.get(),self.ticket_amount.get()))).grid(row=5,column=2,sticky="e" + "w")
 
-
-        print(self.movie_list)
-        print(self.date_url)
-
     def get_movie_list(self, value):
-        self.movie_list, self.movie_url = get_movies(self.date_url[self.day_list.index(self.day_var.get())])
+        self.movie_list = get_movies(self.date_url[self.day_list.index(self.day_var.get())])
         self.movie_menu.destroy()
         self.movie_menu = OptionMenu(self.master, self.movie_var, *self.movie_list, command=self.get_time_list)
         self.movie_menu.grid(row=2, column=2, sticky="e" + "w")
@@ -79,7 +77,7 @@ class App():
     def get_time_list(self, value):
         self.time_list = get_times(self.date_url[self.day_list.index(self.day_var.get())])
         self.time_menu.destroy()
-        self.time_menu = OptionMenu(self.master, self.time_var, *self.time_list(self.movie_list.index(self.movie_var)))
+        self.time_menu = OptionMenu(self.master, self.time_var, *self.time_list[self.movie_list.index(self.movie_var.get())])
         self.time_menu.grid(row=2, column=3, sticky="e" + "w")
 
 if __name__ == "__main__":
