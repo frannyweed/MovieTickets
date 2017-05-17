@@ -29,7 +29,7 @@ class App():
         self.day_var.set(self.day_list[0])
         self.time_var.set("Select a time")
 
-        self.movie_list, self.movie_url = get_movies(self.date_url[self.day_list.index(self.day_var.get())])
+        self.movie_list = get_movies(self.date_url[self.day_list.index(self.day_var.get())])
 
         #self.movie_var.set(self.movie_list[0])
         self.movie_var.set("Select a movie")
@@ -77,9 +77,9 @@ class App():
 
 
     def get_time_list(self, value):
-        self.time_list = get_times(self.movie_url[self.movie_list.index(self.movie_var.get())])
+        self.time_list = get_times(self.date_url[self.day_list.index(self.day_var.get())])
         self.time_menu.destroy()
-        self.time_menu = OptionMenu(self.master, self.time_var, *self.time_list)
+        self.time_menu = OptionMenu(self.master, self.time_var, *self.time_list(self.movie_list.index(self.movie_var)))
         self.time_menu.grid(row=2, column=3, sticky="e" + "w")
 
 if __name__ == "__main__":
