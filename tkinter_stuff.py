@@ -61,7 +61,7 @@ class App():
         self.time_menu.grid(row=2, column=3, sticky="e" + "w")
 
         #spinboxes
-        self.ticket_amount = Spinbox(values=(1,2,3,4,5,6,7,8,9,10,11,12))
+        self.ticket_amount = Spinbox(values=(1,2,3,4,5,6,7,8,9,10))
         self.ticket_amount.grid(row=4,column=2,sticky="e" + "w")
 
         #button
